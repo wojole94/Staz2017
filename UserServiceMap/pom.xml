@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.woleszko.staz2017.task1</groupId>
-    <artifactId>UserService</artifactId>
+    <artifactId>UserServiceMap</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
-    <name>UserService OSGi Bundle</name>
+    <name>UserServiceMap OSGi Bundle</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,6 +18,12 @@
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
             <version>4.3.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>  
+            <groupId>pl.woleszko.staz2017.task1</groupId>
+            <artifactId>UserService</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -31,10 +37,10 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>pl.woleszko.staz2017.task1.userService.Activator</Bundle-Activator>
-                        <Export-Package>
-                        	pl.woleszko.staz2017.task1.userService.Service
-                        </Export-Package>
+
+                        <Bundle-Activator>pl.woleszko.staz2017.task1.UserServiceMap.Activator</Bundle-Activator>
+                        <Export-Package/>
+						<Import-Package> pl.woleszko.staz2017.task1.userService.Service</Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
