@@ -1,4 +1,4 @@
-package pl.woleszko.task1.restAPI;
+package pl.woleszko.staz2017.task1.RestAPI;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

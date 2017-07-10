@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pl.woleszko.task1</groupId>
-    <artifactId>restAPI</artifactId>
+    <groupId>pl.woleszko.staz2017.task1</groupId>
+    <artifactId>RestAPI</artifactId>
     <version>1.0</version>
     <packaging>bundle</packaging>
 
-    <name>restAPI OSGi Bundle</name>
+    <name>RestAPI OSGi Bundle</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,7 +31,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>pl.woleszko.task1.restAPI.Activator</Bundle-Activator>
+                        <Bundle-Activator>pl.woleszko.staz2017.task1.RestAPI.Activator</Bundle-Activator>
                         <Export-Package/>
                     </instructions>
                 </configuration>
