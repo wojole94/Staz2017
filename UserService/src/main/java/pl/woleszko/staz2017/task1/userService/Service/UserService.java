@@ -6,6 +6,6 @@ public interface UserService {
 	public void addUser(User user);
 	public void editUser(Long id);
 	public void deleteUser(Long id);
-	public User showSingle(Long id);
-	public ArrayList<User> showList();
+	public User getSingle(Long id);
+	public ArrayList<User> getList();
 }
