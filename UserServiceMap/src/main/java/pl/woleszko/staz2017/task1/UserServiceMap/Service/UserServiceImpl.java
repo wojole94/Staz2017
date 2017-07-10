@@ -15,21 +15,53 @@ public class UserServiceImpl implements UserService {
 		db = new HashMap<Long,User>();
 		
 	}
+	/**
+	 * 
+	 * 
+	 * @return Returns false if record with the same login exists in database
+	 */
 	
-	public void addUser(User user) {
+	
+	public Boolean addUser(User user) {
+		ArrayList<User> list = getList();
 		
+		for(User ex : list ) {
+			if (ex.getLogin().equals(user.getLogin())) return false;
+		}
+		
+		while (db.containsKey(user.getIndex())) {		
+			user = new User(user.getName(),user.getLogin());			
+		}
+		
+		db.put(user.getIndex(),user);		
+		return true;
 	}
 	
-	public void editUser(Long id) {
+	public Boolean editUser(User user) {
 		
+		if(!deleteUser(user.getIndex())) return false;
+		if(!addUser(user)) return false;
+		
+		return true;
 	}
 	
-	public void deleteUser(Long id) {
+	/**
+	 * 
+	 * 
+	 * @return Returns false if record at this index wasn't in database
+	 */
+	
+	public Boolean deleteUser(Long idx) {
 		
+		if(!db.containsKey(idx)) return false;
+		
+		db.remove(idx);
+		
+		return true;
 	}
 	
-	public User getSingle(Long id) {
-		return (User) db.get(id);
+	public User getSingle(Long idx) {
+		return (User) db.get(idx);
 	}
 	
 	public ArrayList<User> getList(){
