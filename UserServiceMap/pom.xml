@@ -18,9 +18,9 @@
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
             <version>4.3.0</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
-		<dependency>
+        <dependency>
 			<groupId>pl.woleszko.staz2017.task1</groupId>
 			<artifactId>UserService</artifactId>
 			<version>1.0</version>
@@ -45,11 +45,10 @@
                     <instructions>
                         <Bundle-Activator>pl.woleszko.staz2017.task1.UserServiceMap.Activator</Bundle-Activator>
                         <Export-Package>
-                        	pl.woleszko.staz2017.task1.UserServiceMap.Service.*
+                        	pl.woleszko.staz2017.task1.UserServiceMap.Service
                         </Export-Package>
 						<Import-Package>
-							pl.woleszko.staz2017.task1.userService.Service,
-							org.osgi.framework
+							*
 						</Import-Package>
                     </instructions>
                 </configuration>

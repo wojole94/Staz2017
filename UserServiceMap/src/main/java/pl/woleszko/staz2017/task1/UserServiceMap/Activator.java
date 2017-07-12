@@ -4,21 +4,21 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import pl.woleszko.staz2017.task1.UserServiceMap.Service.*;
+import pl.woleszko.staz2017.task1.userService.Service.UserService;
 
 public class Activator implements BundleActivator {
 	ServiceRegistration userServiceRegistration;
     
 	public void start(BundleContext context) throws Exception {
         // TODO add activation code here
-    	UserServiceImpl userService = new UserServiceImpl();
-		userServiceRegistration = context.registerService(UserServiceImpl.class.getName(), userService, null);
+
 		System.out.println("UserServices HashMap implementation is avaiable");
 		
     }
 
     public void stop(BundleContext context) throws Exception {
         // TODO add deactivation code here
-    	userServiceRegistration.unregister();
+
 		System.out.println("UserServices HashMap implementation is unavaiable");
     }
 

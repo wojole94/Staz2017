@@ -1,0 +1,31 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs"
+	xmlns:core="http://cxf.apache.org/blueprint/core" 
+	xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0"
+	xmlns:camel-cxf="http://camel.apache.org/schema/blueprint/cxf"
+	xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
+	xsi:schemaLocation="
+  http://www.osgi.org/xmlns/blueprint/v1.0.0 
+  http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+  http://cxf.apache.org/blueprint/jaxrs 
+  http://cxf.apache.org/schemas/blueprint/jaxrs.xsd
+  http://cxf.apache.org/blueprint/core 
+  http://cxf.apache.org/schemas/blueprint/core.xsd">
+
+	<jaxrs:server id="users" address="/userservices">
+		<jaxrs:serviceBeans>
+			<ref component-id="restServiceImpl" />
+		</jaxrs:serviceBeans>
+	</jaxrs:server>
+
+	<bean id="restServiceImpl" class="pl.woleszko.staz2017.task1.RestAPI.Service.UserEndpoint">
+		<argument ref="userService"/>
+	</bean>
+	
+	<reference id="userService"
+			   activation="eager"
+			   availability="mandatory"			   
+			   interface="pl.woleszko.staz2017.task1.userService.Service.UserService"/>
+
+</blueprint>
