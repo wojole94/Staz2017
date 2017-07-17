@@ -7,7 +7,7 @@ import pl.woleszko.staz2017.task1.userService.Service.User;
 import pl.woleszko.staz2017.task1.UserServiceDB.UserServiceDAO;
 import pl.woleszko.staz2017.task1.userService.Service.UserService;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 	UserServiceDAO db;
 	public UserServiceImpl(){
 		db = new UserServiceDAO();

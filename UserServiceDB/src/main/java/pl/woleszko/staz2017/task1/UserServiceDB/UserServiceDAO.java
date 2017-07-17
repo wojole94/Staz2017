@@ -41,7 +41,7 @@ public class UserServiceDAO {
 
 			session = factory.openSession();
 			session.beginTransaction();
-			List<User> result = session.createQuery( "from USERS" ).list();
+			List<User> result = session.createQuery( "from User" ).list();
 			session.getTransaction().commit();
 			session.close();
 

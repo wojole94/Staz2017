@@ -16,10 +16,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 @XmlRootElement(name = "user")
-@Entity
-@Table(name = "USERS")
 public class User extends Object{
-	@Id
+
 	private Long id;
 	@Column(name = "USER_NAME")
 	private String name;
@@ -57,9 +55,6 @@ public class User extends Object{
 		return this.login;
 	}	
 
-	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
 	public Long getId() {
 		return this.id;
 	}
