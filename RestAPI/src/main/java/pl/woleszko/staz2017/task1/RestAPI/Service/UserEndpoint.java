@@ -37,7 +37,7 @@ public class UserEndpoint {
 		
 
 	@GET
-	@Path("/getuser/{id}")
+	@Path("/{id}")
 	@Produces({"application/xml", "application/json"})
 	public User getUser(@PathParam("id") Long id) {	
 		
@@ -47,7 +47,7 @@ public class UserEndpoint {
 	
 
 	@GET
-	@Path("/getall")
+	@Path("/")
 	@Produces({"application/xml","application/json"})
 	public LinkedList<User> getAll() {
 		LinkedList<User> list = (LinkedList<User>) userService.getList();	
@@ -64,7 +64,7 @@ public class UserEndpoint {
 	}
 	
 	@POST
-	@Path("/adduser")
+	@Path("/")
 	@Consumes({"application/xml","applicaton/json"})
 	public Response addNew(User user) {
 		
@@ -76,7 +76,7 @@ public class UserEndpoint {
 	}
 	
 	@DELETE
-	@Path("/deleteuser/{id}")
+	@Path("/{id}")
 	public Response deleteUser(@PathParam("id") Long id) {
 		
 		System.out.println("Usunieto rekord");
@@ -86,7 +86,7 @@ public class UserEndpoint {
 	}
 	
 	@PUT
-	@Path("/edituser")
+	@Path("/")
 	@Consumes({"application/xml","applicaton/json"})
 	public Response editUser(User user) {
 		User user1 = userService.getSingle(user.getId());
