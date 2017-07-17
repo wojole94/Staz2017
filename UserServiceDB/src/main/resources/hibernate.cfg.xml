@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration 
+SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd" 
+PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN">
+
+<hibernate-configuration>
+
+
+<session-factory>
+
+<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+
+<property name="connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+
+<property name="connection.username">system</property>
+
+<property name="connection.password">admin1</property>
+
+<!-- JDBC connection pool (use the built-in) -->
+
+
+<property name="connection.pool_size">1</property>
+
+
+</session-factory>
+
+</hibernate-configuration>

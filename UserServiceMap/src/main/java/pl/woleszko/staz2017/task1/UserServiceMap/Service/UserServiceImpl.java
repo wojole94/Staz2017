@@ -1,6 +1,7 @@
 package pl.woleszko.staz2017.task1.UserServiceMap.Service;
 
-import pl.woleszko.staz2017.task1.userService.Service.*;
+import pl.woleszko.staz2017.task1.userService.Service.User;
+import pl.woleszko.staz2017.task1.userService.Service.UserService;
 
 import java.util.ArrayList;
 import java.util.HashMap;

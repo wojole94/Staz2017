@@ -1,14 +1,29 @@
 package pl.woleszko.staz2017.task1.userService.Service;
 
 import java.util.Random;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.GenericGenerator;
+
+
+
 @XmlRootElement(name = "user")
-public class User {
+@Entity
+@Table(name = "USERS")
+public class User extends Object{
+	@Id
 	private Long id;
+	@Column(name = "USER_NAME")
 	private String name;
+	@Column(name = "LOGIN")
 	private String login;
 	
 	public User() {
@@ -25,6 +40,7 @@ public class User {
 		this.name = _name;
 		this.login = _login; 
 	}
+	
 	@XmlElement
 	public void setName(String _name) {
 		this.name = _name;
@@ -40,14 +56,17 @@ public class User {
 	public String getLogin() {
 		return this.login;
 	}	
+
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
+	public Long getId() {
+		return this.id;
+	}
 	@XmlElement
 	public void setId(Long _index) {
 		this.id = _index;
 	}
-	public Long getId() {
-		return this.id;
-	}
-
 	
 	private void setIndex() {
 		Random generator = new Random();

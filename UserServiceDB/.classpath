@@ -5,6 +5,7 @@
   <classpathentry kind="output" path="target/classes"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="var" path="M2_REPO/org/osgi/org.osgi.core/4.3.0/org.osgi.core-4.3.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/pl/woleszko/staz2017/task1/UserService/1.0/UserService-1.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-core/5.2.8.Final/hibernate-core-5.2.8.Final.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jboss/logging/jboss-logging/3.3.0.Final/jboss-logging-3.3.0.Final.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
