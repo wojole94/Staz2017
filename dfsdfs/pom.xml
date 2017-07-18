@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>oracle</groupId>
+    <artifactId>oracle.ojdbc6</artifactId>
+    <packaging>bundle</packaging>
+    <version>11.2.0.3.0001</version>
+    <name>oracle</name>
+    <description>This bundle wraps the standard Maven artifact: ${pkgArtifactId}-${pkgVersion}.</description>
+    <properties>
+        <pkgArtifactId>ojdbc6</pkgArtifactId>
+        <pkgVersion>11.2.0.3</pkgVersion>
+        <osgiVersion>${pkgVersion}.0001</osgiVersion>
+        <pkgVendor>oracle</pkgVendor>
+        <pkgDocUrl/>
+        <pkgLicense>http://www.oracle.com</pkgLicense>
+        <repo.folder>oracle</repo.folder>
+        <google.code.project.name>${project.name}</google.code.project.name>
+    </properties>
+    <dependencies>
+        <dependency>
+		<groupId>com.oracle</groupId>
+  		<artifactId>ojdbc6</artifactId>
+  		<version>11.2.0</version>
+        </dependency>
+    </dependencies>
+    <scm>
+        <connection>scm:svn:https://${google.code.project.name}.googlecode.com/svn/trunk</connection>
+        <developerConnection>scm:svn:https://${google.code.project.name}.googlecode.com/svn/trunk</developerConnection>
+        <url>http://code.google.com/p/${google.code.project.name}/source/browse</url>
+    </scm>
+    <distributionManagement>
+        <repository>
+            <id>Google Code</id>
+            <url>dav:https://${google.code.project.name}.googlecode.com/svn/repo</url>
+        </repository>
+    </distributionManagement>
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                <version>1.0-beta-6</version>
+            </extension>
+        </extensions>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.4</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <remoteOBR>true</remoteOBR>
+                    <bundleUrl>httppgp://${google.code.project.name}.googlecode.com/svn/repo/${repo.folder}/${project.artifactId}/${project.version}/${project.artifactId}-${project.version}.jar</bundleUrl>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Export-Package>*;version=${project.version}</Export-Package>
+                        <Bundle-Vendor>${pkgVendor} (wrapped into an OSGi bundle by the Spring Roo project build system)</Bundle-Vendor>
+                        <Bundle-DocURL>${pkgDocUrl}</Bundle-DocURL>
+                        <Bundle-License>${pkgLicense}</Bundle-License>
+						<Import-Package>!javax.resource,!javax.resource.spi,!javax.resource.spi.endpoint,!javax.resource.spi.security,!oracle.security.pki,!oracle.ons,!oracle.i18n.text,!oracle.i18n.text.converter,!oracle.xml.parser.v2,!sun.security.krb5.internal,!oracle.xdb,!com.sun.security.auth.module,!sun.security.util,!sun.security.krb5,*</Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

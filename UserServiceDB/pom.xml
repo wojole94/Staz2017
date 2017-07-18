@@ -27,22 +27,23 @@
     	<dependency>
     		<groupId>org.hibernate</groupId>
   			<artifactId>hibernate-core</artifactId>
-  			<version>5.2.8.Final</version>
-    	</dependency>
-<dependency>
-    <groupId>org.eclipse.persistence</groupId>
-    <artifactId>eclipselink</artifactId>
-    <version>2.5.0</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/javax.transaction/jta -->
-<dependency>
-    <groupId>javax.transaction</groupId>
-    <artifactId>jta</artifactId>
-    <version>1.1</version>
-</dependency>
-
-
-    
+  			<version>4.3.6.Final</version>
+  			<scope>provided</scope>
+    	</dependency> 
+    	<!-- https://mvnrepository.com/artifact/org.ops4j.pax.jdbc/pax-jdbc-oracle -->
+		<dependency>
+   			<groupId>org.ops4j.pax.jdbc</groupId>
+    		<artifactId>pax-jdbc-oracle</artifactId>
+    		<version>1.1.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.ops4j.pax.jdbc/pax-jdbc-spec -->
+		<dependency>
+    		<groupId>org.ops4j.pax.jdbc</groupId>
+   			<artifactId>pax-jdbc-spec</artifactId>
+    		<version>0.6.0</version>
+		</dependency>
+		
+    	
     </dependencies>
 
     <build>
@@ -54,12 +55,24 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
+                    	<JPA-PersistenceUnits>JPA</JPA-PersistenceUnits>
                     	<Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
                         <Bundle-Activator>pl.woleszko.staz2017.task1.UserServiceDB.Activator</Bundle-Activator>
-                        <Export-Package>pl.woleszko.staz2017.task1.UserServiceDB.Service</Export-Package>
+                        <Export-Package>pl.woleszko.staz2017.task1.UserServiceDB.Service,
+                        				org.hibernate.jpa.HibernatePersistenceProvider
+                        </Export-Package>
                         <Import-Package>
-							javax.persistence;version=”1.1.0″,
 							pl.woleszko.staz2017.userService.Service.*,
+							javax.persistence.*,
+							javax.persistence.criteria,
+							javax.persistence.metamodel,
+							org.hibernate,
+							org.hibernate.annotations,
+							org.hibernate.cfg,
+							org.hibernate.proxy,
+							org.hibernate.type,
+							
+							javassist.util.proxy,
 							*
                         </Import-Package>
                     </instructions>
