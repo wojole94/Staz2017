@@ -6,7 +6,6 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 
 import pl.woleszko.staz2017.task1.RestAPI.Service.UserEndpoint;
-import pl.woleszko.staz2017.task1.UserServiceMap.Service.UserServiceImpl;
 import pl.woleszko.staz2017.task1.userService.Service.*;
 
 

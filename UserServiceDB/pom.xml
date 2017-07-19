@@ -70,8 +70,7 @@
 							org.hibernate.annotations,
 							org.hibernate.cfg,
 							org.hibernate.proxy,
-							org.hibernate.type,
-							
+							org.hibernate.type,						
 							javassist.util.proxy,
 							*
                         </Import-Package>

@@ -1,6 +1,8 @@
 package pl.woleszko.staz2017.task1.userService.Service;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Random;
 
 import javax.persistence.Column;
@@ -18,60 +20,53 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "USERS")
 @XmlRootElement(name = "user")
-public class User extends Object{
+public class User implements Serializable{
 	
-	@Id
-	@Column
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	@Column
-	private String name;
-	@Column
-	private String login;
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY) 
+	@Column(name = "id")
+	Long id;
+	@Column(name = "name")
+	String name;
+	@Column(name = "login")
+	String login;
 	
-	public User() {
+	User() {
 	}
 	
-	public User(String _name, String _login) {
-		setIndex();
-		this.name = _name;
-		this.login = _login; 
-	}
 
-	public User(String _name, String _login, Long _index) {
-		this.id = _index;
-		this.name = _name;
-		this.login = _login; 
+	public User(String name, String login) {
+		this.name = name;
+		this.login = login; 
 	}
 	
-	@XmlElement
-	public void setName(String _name) {
-		this.name = _name;
-	}
-	public String getName() {
-		return this.name;
-	}
-	@XmlElement
-	public void setLogin(String _login) {
-		this.login = _login;
-	}
-
-	public String getLogin() {
-		return this.login;
-	}	
-
 	public Long getId() {
-		return this.id;
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	@XmlElement
-	public void setId(Long _index) {
-		this.id = _index;
+	public String getName() {
+		return name;
 	}
-	
-	private void setIndex() {
-		Random generator = new Random();
-		this.id = generator.nextLong();
+
+	public void setName(String name) {
+		this.name = name;
 	}
+	@XmlElement
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+
+
+		
+
 	
 	@Override
 	public boolean equals(Object obj) {

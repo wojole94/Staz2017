@@ -6,30 +6,29 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import pl.woleszko.staz2017.task1.userService.Service.User;
 
+@Transactional
 public class UserServiceDAO {
-	EntityManagerFactory factory;
-
+	@PersistenceContext(unitName = "JPA")
+	EntityManager em;
 	
 	public UserServiceDAO(){
-		getConnection();
 	}
 	
-	public void getConnection() {
-		factory = Persistence.createEntityManagerFactory("JPA");
-	}
+
 	
 	public void put(User user){
-	      EntityManager entitymanager = factory.createEntityManager( );
-	      entitymanager.getTransaction( ).begin( );
-		
-	      entitymanager.persist( user );
-	      entitymanager.getTransaction( ).commit( );
-
-	      entitymanager.close();
+		  
+		  System.out.println("adding " +user.getId()+" "+ user.getName() + " "+ user.getLogin());
+		  System.out.println("by " + em.toString());
+		 
+	      em.persist( user );
+	      
+	      System.out.println("end");
 	}
 	public List<User> getTable() {
 		// TODO Auto-generated method stub
@@ -37,11 +36,6 @@ public class UserServiceDAO {
 	
 	}
 	
-	protected void finalize(){
-		factory.close();
-		
-		
-	}
 
 
 	

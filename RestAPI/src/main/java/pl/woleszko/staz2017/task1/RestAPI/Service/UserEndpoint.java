@@ -53,12 +53,6 @@ public class UserEndpoint {
 		LinkedList<User> list = (LinkedList<User>) userService.getList();	
 
 		
-		User user1 = new User("login1","stefan",new Long(15));
-		User user2 = new User("ksdf11", "fsd");				
-		User user3 = new User("kewfdf11", "adsfadgk");		
-		userService.addUser(user1);
-		userService.addUser(user2);
-		userService.addUser(user3);
 		
 		return list;
 	}

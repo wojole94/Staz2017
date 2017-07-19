@@ -5,13 +5,14 @@ import java.util.LinkedList;
 
 import pl.woleszko.staz2017.task1.userService.Service.*;
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {	
 	UserServiceDAO db;
-	public UserServiceImpl(){
-		db = new UserServiceDAO();
+	public UserServiceImpl(UserServiceDAO db){
+		this.db=db;
 	}
 	public Boolean addUser(User user) {
 		// TODO Auto-generated method stub
+		
 		db.put(user);
 		return null;
 	}
