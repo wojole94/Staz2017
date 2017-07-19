@@ -66,7 +66,7 @@ public class UserEndpoint {
 		
 		userService.addUser(user);
 
-		return Response.ok().build();
+		return Response.ok(user).build();
 	}
 	
 	@DELETE
