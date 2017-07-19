@@ -23,7 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class User implements Serializable{
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	@Column(name = "id")
 	Long id;
 	@Column(name = "name")
@@ -31,15 +30,21 @@ public class User implements Serializable{
 	@Column(name = "login")
 	String login;
 	
-	User() {
+	public User() {
 	}
 	
 
-	public User(String name, String login) {
+	public User(Long id, String name, String login) {
+		this.id = id;
 		this.name = name;
 		this.login = login; 
 	}
 	
+	public User(String name, String login) {
+		this.name = name;
+		this.login = login;
+	}
+	@XmlElement
 	public Long getId() {
 		return id;
 	}

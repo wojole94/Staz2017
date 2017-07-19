@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public interface UserService {
-	public Boolean addUser(User user);
-	public Boolean editUser(User user);
+	public User addUser(User user);
+	public User editUser(User user);
 	public Boolean deleteUser(Long idx);
 	public User getSingle(Long idx);
 	public LinkedList<User> getList();

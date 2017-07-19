@@ -1,7 +1,8 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"  
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd"
-           xmlns:jpa="http://aries.apache.org/xmlns/jpa/v2.0.0">
+           xmlns:jpa="http://aries.apache.org/xmlns/jpa/v2.0.0"
+           xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0">
 
 	<jpa:enable />
     <service id="userServiceBean" 
@@ -14,6 +15,8 @@
    	</bean>
     	  
     <bean id="userServiceDAO" 
-    	  class="pl.woleszko.staz2017.task1.UserServiceDB.Service.UserServiceDAO"/>
+    	  class="pl.woleszko.staz2017.task1.UserServiceDB.Service.UserServiceDAO">
+    	  <tx:transaction method="*" value="Required" /> 
+    </bean>
 
 </blueprint>

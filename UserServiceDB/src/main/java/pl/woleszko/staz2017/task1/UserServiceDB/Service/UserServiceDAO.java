@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 import pl.woleszko.staz2017.task1.userService.Service.User;
 
-@Transactional
+
 public class UserServiceDAO {
 	@PersistenceContext(unitName = "JPA")
 	EntityManager em;
@@ -20,13 +20,13 @@ public class UserServiceDAO {
 	}
 	
 
-	
+	@Transactional
 	public void put(User user){
-		  
 		  System.out.println("adding " +user.getId()+" "+ user.getName() + " "+ user.getLogin());
 		  System.out.println("by " + em.toString());
 		 
 	      em.persist( user );
+	      em.flush();
 	      
 	      System.out.println("end");
 	}

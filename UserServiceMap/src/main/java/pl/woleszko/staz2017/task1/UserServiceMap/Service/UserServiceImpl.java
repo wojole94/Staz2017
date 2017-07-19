@@ -13,6 +13,7 @@ import java.util.Set;
 
 public class UserServiceImpl implements UserService {
 	private HashMap<Long,User> db;	
+	private Long index = new Long(0);
 	public UserServiceImpl() {
 		db = new HashMap<Long,User>();
 		
@@ -24,33 +25,32 @@ public class UserServiceImpl implements UserService {
 	 */
 	
 	
-	public Boolean addUser(User user) {
+	public User addUser(User user) {
 		LinkedList<User> list = getList();
 		
 		for(User ex : list ) {
-			if (ex.getLogin().equals(user.getLogin())) return false;
+			if (ex.getLogin().equals(user.getLogin())) return null;
 		}
 		
-		while (db.containsKey(user.getId())) {		
-			user = new User(user.getName(),user.getLogin());			
-		}
+		this.index += 1;
+		user.setId(index);
 		
 		db.put(user.getId(),user);		
-		return true;
+		return user;
 	}
 	
-	public Boolean editUser(User user) {
+	public User editUser(User user) {
 		
-		if(!deleteUser(user.getId())) return false;
-		if(!addUser(user)) return false;
+		if(!deleteUser(user.getId())) return null;
+		if(addUser(user).equals(null)) return null;
 		
-		return true;
+		return user;
 	}
 	
 	/**
 	 * 
 	 * 
-	 * @return Returns false if record at this index wasn't in database
+	 * @return Returns false when record at this index wasn't in database
 	 */
 	
 	public Boolean deleteUser(Long idx) {
@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	public User getSingle(Long idx) {
+		if(!db.containsKey(idx)) return null;
 		return (User) db.get(idx);
 	}
 	
