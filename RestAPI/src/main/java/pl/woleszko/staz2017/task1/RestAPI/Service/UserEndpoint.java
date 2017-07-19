@@ -50,11 +50,9 @@ public class UserEndpoint {
 	@Path("/")
 	@Produces({"application/xml","application/json"})
 	public LinkedList<User> getAll() {
-		LinkedList<User> list = (LinkedList<User>) userService.getList();	
-
-		
-		
+		LinkedList<User> list =  userService.getList();	
 		return list;
+		
 	}
 	
 	@POST
@@ -73,7 +71,7 @@ public class UserEndpoint {
 	@Path("/{id}")
 	public Response deleteUser(@PathParam("id") Long id) {
 		
-		System.out.println("Usunieto rekord");
+		System.out.println("Usunieto rekord" + id);
 		userService.deleteUser(id);
 		
 		return Response.ok().build();
@@ -82,16 +80,10 @@ public class UserEndpoint {
 	@PUT
 	@Path("/")
 	@Consumes({"application/xml","applicaton/json"})
-	public Response editUser(User user) {
-		User user1 = userService.getSingle(user.getId());
-		System.out.println("Zmieniono z: " + user1.getLogin() +" "+ user1.getName());
-		
-		userService.editUser(user);
-		user = userService.getSingle(user.getId());
-		
+	@Produces({"application/xml","applicaton/json"})
+	public User editUser(User user) {
 
-		System.out.print(" na: " + user.getLogin() +" "+ user.getName());
-		return Response.ok().build();
+		return userService.editUser(user);
 	}
 	
 
