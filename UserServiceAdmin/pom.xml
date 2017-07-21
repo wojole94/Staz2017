@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>pl.woleszko.staz2017.task1</groupId>
+    <artifactId>UserServiceAdmin</artifactId>
+    <version>1.0</version>
+    <packaging>bundle</packaging>
+
+    <name>UserServiceAdmin OSGi Bundle</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>4.3.0</version>
+            <scope>provided</scope>
+        </dependency>
+    <!-- https://mvnrepository.com/artifact/org.osgi/org.osgi.service.cm -->
+		<dependency>
+    		<groupId>org.osgi</groupId>
+    		<artifactId>org.osgi.service.cm</artifactId>
+    		<version>1.5.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>pl.woleszko.staz2017.task1</groupId>
+    		<artifactId>UserServiceMap</artifactId>
+    		<version>1.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>pl.woleszko.staz2017.task1</groupId>
+    		<artifactId>UserServiceDB</artifactId>
+    		<version>1.2</version>
+		</dependency>
+
+        <dependency>
+			<groupId>pl.woleszko.staz2017.task1</groupId>
+			<artifactId>UserService</artifactId>
+			<version>1.0</version>
+        </dependency>
+		
+    </dependencies>
+
+    
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-Activator>pl.woleszko.staz2017.task1.UserServiceAdmin.Activator</Bundle-Activator>
+                        <Export-Package>
+                        pl.woleszko.staz2017.task1.UserServiceAdmin.Service
+                        </Export-Package>
+                        <Import-Package>
+                        *
+                        </Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

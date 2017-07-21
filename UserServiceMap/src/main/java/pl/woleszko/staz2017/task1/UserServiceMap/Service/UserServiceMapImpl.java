@@ -11,10 +11,10 @@ import java.util.Set;
 
 
 
-public class UserServiceImpl implements UserService {
+public class UserServiceMapImpl implements UserService {
 	private HashMap<Long,User> db;	
 	private Long index = new Long(0);
-	public UserServiceImpl() {
+	public UserServiceMapImpl() {
 		db = new HashMap<Long,User>();
 		
 	}

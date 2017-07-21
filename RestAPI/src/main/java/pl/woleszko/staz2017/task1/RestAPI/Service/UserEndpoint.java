@@ -17,18 +17,16 @@ import pl.woleszko.staz2017.task1.userService.Service.*;
 
 @Path("/users")
 public class UserEndpoint {
+
 	public UserService userService;
 	
 	public UserService getUserService() {
 		return userService;
 	}
 
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
+	public UserEndpoint(UserService userService){
 
-	public UserEndpoint(UserService _userService){
-		this.userService = _userService;
+		this.userService = userService;
 	}
 	
 	public UserEndpoint() {

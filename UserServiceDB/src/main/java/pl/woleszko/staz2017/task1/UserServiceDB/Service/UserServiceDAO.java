@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 import pl.woleszko.staz2017.task1.userService.Service.User;
 
 
-public class UserServiceDAO {
+public class UserServiceDAO implements ServiceDAO {
 	@PersistenceContext(unitName = "JPA")
 	EntityManager em;
 	
@@ -63,7 +63,7 @@ public class UserServiceDAO {
 	@Transactional
 	public Boolean delete(Long id) {
 	
-	    User user =em.find(User.class, id );
+	    User user = em.find(User.class, id );
 	    
 		if(user.equals(null)) return false;    
 	    em.remove(user);

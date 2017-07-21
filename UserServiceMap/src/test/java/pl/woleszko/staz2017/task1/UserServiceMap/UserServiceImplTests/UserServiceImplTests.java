@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import pl.woleszko.staz2017.task1.UserServiceMap.Service.UserServiceImpl;
+import pl.woleszko.staz2017.task1.UserServiceMap.Service.UserServiceMapImpl;
 import pl.woleszko.staz2017.task1.userService.Service.*;
 
 public class UserServiceImplTests {
@@ -14,13 +14,13 @@ public class UserServiceImplTests {
 	@Test
 	public void testAddUser() {
 		
-		UserServiceImpl userService = new UserServiceImpl();
+		UserServiceMapImpl userService = new UserServiceMapImpl();
 		User user = new User("Kowalski", "kowalski35");
 		userService.addUser(user);
 		
 		User testUser1 = new User("Kowalski", "kowalski35");
-		Boolean testValue = userService.addUser(testUser1);
-		assertEquals("addUser() method test failure - should return false if login is already in database", false, testValue);
+		User testValue = userService.addUser(testUser1);
+		assertEquals("addUser() method test failure - should return false if login is already in database", null, testValue);
 		
 		
 		User testUser2 = userService.getSingle(user.getId());
@@ -32,7 +32,7 @@ public class UserServiceImplTests {
 	@Test
 	public void testGetSingle() {
 		
-		UserServiceImpl userService = new UserServiceImpl();
+		UserServiceMapImpl userService = new UserServiceMapImpl();
 		User user = new User("Kowalski", "kowalski35");
 		userService.addUser(user);
 		
@@ -47,7 +47,7 @@ public class UserServiceImplTests {
 	@Test
 	public void testGetList() {
 		
-		UserServiceImpl userService = new UserServiceImpl();
+		UserServiceMapImpl userService = new UserServiceMapImpl();
 		User user1 = new User("Kowalski", "kowalski35");
 		userService.addUser(user1);
 		User user2 = new User("Nowak","nowak23");
@@ -64,7 +64,7 @@ public class UserServiceImplTests {
 	@Test
 	public void testDeleteUser() {
 		
-		UserServiceImpl userService = new UserServiceImpl();
+		UserServiceMapImpl userService = new UserServiceMapImpl();
 		User user = new User("Kowalski", "kowalski35");
 		userService.addUser(user);
 		
@@ -83,21 +83,21 @@ public class UserServiceImplTests {
 	@Test
 	public void testEditUser() {
 		
-		UserServiceImpl userService = new UserServiceImpl();
+		UserServiceMapImpl userService = new UserServiceMapImpl();
 		User user = new User("Kowalski", "kowalski35");
 		userService.addUser(user);
 		
 		User testUser1 = userService.getSingle(user.getId());
 		testUser1.setLogin("kowalski20");
 		testUser1.setName("Nowak");
-		Boolean testValue = userService.editUser(testUser1);
+		User testValue = userService.editUser(testUser1);
 		
-		assertEquals("editUser() method failure - internal method error", true, testValue);
+		assertEquals("editUser() method failure - internal method error", testUser1, testValue);
 		
 		User testUser2 = userService.getSingle(user.getId());	
-		testValue = testUser2.equals(testUser1);
+		Boolean testValuebool = testUser2.equals(testUser1);
 		
-		assertEquals("editUser() method failure - no changes in record", true, testValue);		
+		assertEquals("editUser() method failure - no changes in record", true, testValuebool);		
 		
 	}
 

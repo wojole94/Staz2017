@@ -6,9 +6,9 @@ import java.util.LinkedList;
 
 import pl.woleszko.staz2017.task1.userService.Service.*;
 
-public class UserServiceImpl implements UserService {	
-	UserServiceDAO db;
-	public UserServiceImpl(UserServiceDAO db){
+public class UserServiceDBImpl implements UserService {	
+	ServiceDAO db;
+	public UserServiceDBImpl(ServiceDAO db){
 		this.db=db;
 	}
 	public User addUser(User user) {
