@@ -35,8 +35,6 @@ public class Activator implements BundleActivator, ManagedService {
     	
     	Hashtable <String, Object> properties = new Hashtable<String, Object>();
         properties.put(Constants.SERVICE_PID, CONFIG_PID);
-        properties.put("db", "false");
-        properties.put("map", "true");
         
         configRegistration = context.registerService (ManagedService.class.getName(),
          this , properties);
@@ -45,6 +43,8 @@ public class Activator implements BundleActivator, ManagedService {
         userServiceMapRegistration = context.registerService (UserService.class.getName(),
                 userServiceMap , null);
         
+
+        
         
     	System.out.println("Implementation config avaiable");
 		System.out.println("Map implementation");
@@ -52,42 +52,43 @@ public class Activator implements BundleActivator, ManagedService {
 
     public void stop(BundleContext context) throws Exception {
         // TODO add deactivation code here
-    	if(!userServiceDBRegistration.equals(null)) userServiceDBRegistration.unregister();
-    	if(!userServiceMapRegistration.equals(null)) userServiceMapRegistration.unregister();
+    	userServiceDBRegistration.unregister();
+    	userServiceMapRegistration.unregister();
     	configRegistration.unregister();
 
     	System.out.println("Implementation config unavaiable");
     }
     
     public void updated (Dictionary config) {
-
-    		String db = (String)config.get("db");
-    		String map = (String)config.get("map");
     		
-    		if(db.equals("true")) dbMode = true;
-    		else dbMode = false;
-    		if(map.equals("true")) mapMode = true;    		
-    		else mapMode = false;
-    		
-    		if (dbMode) {
-    	    	userServiceMapRegistration.unregister();
-    			System.out.println("DB implementation");
-    	        daoRef = context.getServiceReference(ServiceDAO.class.getName());
-    	        ServiceDAO dao = (ServiceDAO) context.getService(daoRef);
-    	        UserServiceDBImpl userServiceDB = new UserServiceDBImpl(dao);
-    	        userServiceDBRegistration = context.registerService (UserService.class.getName(),
-    	                userServiceDB , null);
-    			//Wystawiam db
-    		}    		
-    		if (mapMode) {
-    	    	userServiceDBRegistration.unregister();
-    			System.out.println("Map implementation");
-    			UserServiceMapImpl userServiceMap = new UserServiceMapImpl();
-    	        userServiceMapRegistration = context.registerService (UserService.class.getName(),
-    	                userServiceMap , null);
-    			//Wystawiam mape
+    	if (!config.equals(null)){
+	    		String db = (String)config.get("db");
+	    		String map = (String)config.get("map");
+	    		
+	    		if(db.equals("true")) dbMode = true;
+	    		else dbMode = false;
+	    		if(map.equals("true")) mapMode = true;    		
+	    		else mapMode = false;
+	    		
+	    		if (dbMode) {
+	    	    	userServiceMapRegistration.unregister();
+	    			System.out.println("DB implementation");
+	    	        daoRef = context.getServiceReference(ServiceDAO.class.getName());
+	    	        ServiceDAO dao = (ServiceDAO) context.getService(daoRef);
+	    	        UserServiceDBImpl userServiceDB = new UserServiceDBImpl(dao);
+	    	        userServiceDBRegistration = context.registerService (UserService.class.getName(),
+	    	                userServiceDB , null);
+	    			//Wystawiam db
+	    		}    		
+	    		if (mapMode) {
+	    	    	userServiceDBRegistration.unregister();
+	    			System.out.println("Map implementation");
+	    			UserServiceMapImpl userServiceMap = new UserServiceMapImpl();
+	    	        userServiceMapRegistration = context.registerService (UserService.class.getName(),
+	    	                userServiceMap , null);
+	    			//Wystawiam mape
+	    		}
     		}
-    		
     		
     	}
 

@@ -15,20 +15,22 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
-
 @Entity
 @Table(name = "USERS")
 @XmlRootElement(name = "user")
 public class User implements Serializable{
 	
-	@Id 
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seq_gen")
+	@SequenceGenerator(name="seq_gen", sequenceName="id_seq_gen", allocationSize=1)
 	@Column(name = "id")
-	Long id;
+	private Long id;
+
 	@Column(name = "name")
-	String name;
+	private String name;
+
 	@Column(name = "login")
-	String login;
+	private String login;
 	
 	public User() {
 	}
@@ -44,14 +46,14 @@ public class User implements Serializable{
 		this.name = name;
 		this.login = login;
 	}
-	@XmlElement
+	@XmlAttribute
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	@XmlElement
+	@XmlElement	
 	public String getName() {
 		return name;
 	}

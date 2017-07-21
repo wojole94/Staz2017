@@ -58,11 +58,10 @@ public class UserEndpoint {
 	@Consumes({"application/xml","applicaton/json"})
 	public Response addNew(User user) {
 		
-		System.out.println("Dodano " + user.getLogin() +" "+ user.getName());
-		
+		System.out.println("Dodano " + user.getLogin() +" "+ user.getName());		
 		userService.addUser(user);
 
-		return Response.ok(user).build();
+		return Response.ok().build();
 	}
 	
 	@DELETE
@@ -70,18 +69,27 @@ public class UserEndpoint {
 	public Response deleteUser(@PathParam("id") Long id) {
 		
 		System.out.println("Usunieto rekord" + id);
+		if(userService.getSingle(id).equals(null)) return Response.notModified().build();	
 		userService.deleteUser(id);
 		
 		return Response.ok().build();
 	}
 	
 	@PUT
-	@Path("/")
+	@Path("/{id}")
 	@Consumes({"application/xml","applicaton/json"})
-	@Produces({"application/xml","applicaton/json"})
-	public User editUser(User user) {
+	public Response editUser(@PathParam("id") Long id, User user) {
+		User effect;
 
-		return userService.editUser(user);
+		if(user.getId().equals(id)&&(!user.getId().equals(null))) {
+			effect = userService.editUser(user);
+		}
+		else return Response.status(400).build();
+		if(userService.getSingle(id).equals(null)) return Response.notModified().build();	
+		
+		if(effect.getId().equals(0)) return Response.notModified().build();
+		
+		return Response.ok().build();
 	}
 	
 

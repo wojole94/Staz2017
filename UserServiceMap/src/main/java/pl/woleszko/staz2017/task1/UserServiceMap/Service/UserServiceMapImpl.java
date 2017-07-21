@@ -8,12 +8,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.*;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 
 
 public class UserServiceMapImpl implements UserService {
-	private HashMap<Long,User> db;	
-	private Long index = new Long(0);
+	private HashMap<Long, User> db;	
+	private AtomicLong index = new AtomicLong(0);
 	public UserServiceMapImpl() {
 		db = new HashMap<Long,User>();
 		
@@ -32,8 +34,8 @@ public class UserServiceMapImpl implements UserService {
 			if (ex.getLogin().equals(user.getLogin())) return null;
 		}
 		
-		this.index += 1;
-		user.setId(index);
+		Long newId = index.incrementAndGet();
+		user.setId(newId);
 		
 		db.put(user.getId(),user);		
 		return user;

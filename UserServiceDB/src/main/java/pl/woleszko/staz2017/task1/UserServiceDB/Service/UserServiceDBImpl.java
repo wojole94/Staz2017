@@ -27,7 +27,7 @@ public class UserServiceDBImpl implements UserService {
 	public User editUser(User user) {
 		// TODO Auto-generated method stub
 		User result = db.edit(user);
-		if(result.equals(null)) result = new User(user.getId(),"Brak danych","Brak danych");
+		if(result.equals(null)) result = new User((long) 0,"Brak danych","Brak danych");
 		return result;
 	}
 
@@ -43,13 +43,13 @@ public class UserServiceDBImpl implements UserService {
 		return result;
 		
 		
-
 	}
 
 	public User getSingle(Long id) {
 		// TODO Auto-generated method stub
+		
 		User result = db.get(id);
-		if(result.equals(null)) result = new User(id,"Brak danych","Brak danych");
+		if(result.equals(null)) result = new User((long) 0,"Brak danych","Brak danych");
 		
 		return result;
 	}
