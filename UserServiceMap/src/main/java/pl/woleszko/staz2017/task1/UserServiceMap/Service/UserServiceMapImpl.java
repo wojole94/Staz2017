@@ -33,9 +33,12 @@ public class UserServiceMapImpl implements UserService {
 		for(User ex : list ) {
 			if (ex.getLogin().equals(user.getLogin())) return null;
 		}
+		Long id = user.getId();
 		
-		Long newId = index.incrementAndGet();
-		user.setId(newId);
+		if(id == null) {
+			Long newId = index.incrementAndGet();
+			user.setId(newId);
+		}
 		
 		db.put(user.getId(),user);		
 		return user;

@@ -43,6 +43,7 @@ public class User implements Serializable{
 	}
 	
 	public User(String name, String login) {
+		this.id = null;
 		this.name = name;
 		this.login = login;
 	}

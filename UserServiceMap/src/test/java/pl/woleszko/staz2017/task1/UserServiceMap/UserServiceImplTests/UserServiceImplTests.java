@@ -20,7 +20,7 @@ public class UserServiceImplTests {
 		
 		User testUser1 = new User("Kowalski", "kowalski35");
 		User testValue = userService.addUser(testUser1);
-		assertEquals("addUser() method test failure - should return false if login is already in database", null, testValue);
+		assertNotEquals("addUser() method test failure - should return false if login is already in database", testValue);
 		
 		
 		User testUser2 = userService.getSingle(user.getId());
